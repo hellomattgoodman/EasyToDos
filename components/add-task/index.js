@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const AddTask = (props) => {
@@ -18,18 +18,14 @@ const AddTask = (props) => {
   };
 
   return (
-    <KeyboardAvoidingView behavior="height">
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={styles.container}>
-          <View style={styles.textEntryContainer}>
-            <TextInput style={styles.textEntryElement} value={taskText} onChangeText={text => setTaskText(text)} onFocus={() => clearOrEditText()} onBlur={() => saveOrResetText()} multiline={true} onSubmitEditing={() => addTask()} />
-            <TouchableOpacity style={styles.addIcon} onPress={() => addTask()}>
-              <Icon name="add-circle" color={((taskText === '' || taskText === 'I need to...')) ? '#8B8B8B' : '#004777'} size={24} style={styles.addIcon} />
-            </TouchableOpacity>
-          </View>
+      <View style={styles.container}>
+        <View style={styles.textEntryContainer}>
+          <TextInput style={styles.textEntryElement} value={taskText} onChangeText={text => setTaskText(text)} onFocus={() => clearOrEditText()} onBlur={() => saveOrResetText()} multiline={true} onSubmitEditing={() => addTask()} />
+          <TouchableOpacity style={styles.addIcon} onPress={() => addTask()}>
+            <Icon name="add-circle" color={((taskText === '' || taskText === 'I need to...')) ? '#8B8B8B' : '#004777'} size={Platform.OS === "ios" ? 14 : 24} style={styles.addIcon} />
+          </TouchableOpacity>
         </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+      </View>
   );
 };
 
@@ -41,7 +37,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    width: '100%',
   },
   textEntryContainer: {
     minHeight: 44,

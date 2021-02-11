@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard, Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Login = (props) => {
@@ -40,14 +40,14 @@ const Login = (props) => {
             <Text style={styles.buttonText}>
               Login
             </Text>
-            <Icon name="chevron-right" size={24} color="#FFFFFF" />
+            <Icon name="chevron-right" size={Platform.OS === "ios" ? 14 : 24} color="#FFFFFF" />
           </TouchableOpacity>
         ) : (
           <View style={styles.buttonDisabled}>
             <Text style={styles.buttonText}>
               Login
             </Text>
-            <Icon name="chevron-right" size={24} color="#FFFFFF" />
+            <Icon name="chevron-right" size={Platform.OS === "ios" ? 14 : 24} color="#FFFFFF" />
           </View>
         )}
       </View>
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#000000',
     flexGrow: 1,
+    minHeight: 44,
   },
   visibilityButton: {
     marginHorizontal: 12,

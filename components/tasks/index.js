@@ -36,9 +36,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
     backgroundColor: '#FFFFFF',
-    height: '100%',
+    flex: 1,
   },
   headerRow: {
     display: 'flex',
@@ -70,14 +70,8 @@ const styles = StyleSheet.create({
     marginRight: 6,
     alignSelf: 'center',
   },
-  taskList: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   footerStyle: {
+    flex: 0,
     justifyContent: 'flex-end',
     backgroundColor: '#FFFFFF',
   },

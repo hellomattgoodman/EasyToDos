@@ -14,7 +14,9 @@ import {
   View,
   Text,
   StatusBar,
-  Modal
+  Modal,
+  KeyboardAvoidingView,
+  Platform
 } from 'react-native';
 
 
@@ -50,7 +52,7 @@ const App: () => React$Node = () => {
     return null;
   }
 
-  if (!user) {
+  if (!auth().currentUser) {
     return (
       <>
         <StatusBar barStyle="light-content" />
@@ -67,10 +69,12 @@ const App: () => React$Node = () => {
 
   return (
     <>
-      <StatusBar barStyle="light-content" />
-      <SafeAreaView>
-        {currentScreen === 'registration-success' ? <RegistrationSuccess switchScreen={switchScreen} /> : null}
-        {currentScreen === 'tasks' ? <Tasks logoutUser={logoutUser} User={user} /> : null}
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView style={{flexGrow: 1}}>
+        <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+          {currentScreen === 'registration-success' ? <RegistrationSuccess switchScreen={switchScreen} /> : null}
+          {currentScreen === 'tasks' ? <Tasks logoutUser={logoutUser} User={user} /> : null}
+        </KeyboardAvoidingView>
       </SafeAreaView>
     </>
   );
